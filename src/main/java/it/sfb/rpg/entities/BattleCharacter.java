@@ -2,11 +2,11 @@ package it.sfb.rpg.entities;
 
 import it.sfb.rpg.engine.interactions.IHealth;
 
-public abstract class BattleCharacter extends GameCharacter implements IBattle{
+public abstract class BattleCharacter extends GameCharacter implements IClass {
 
-    private IBattle gameClass;
+    private IClass gameClass;
 
-    public BattleCharacter(String name, IBattle clz) {
+    public BattleCharacter(String name, IClass clz) {
         super(name);
         gameClass = clz;
     }
@@ -28,7 +28,7 @@ public abstract class BattleCharacter extends GameCharacter implements IBattle{
 
     @Override
     public int getExperienceThreshold() {
-        return IBattle.super.getExperienceThreshold();
+        return IClass.super.getExperienceThreshold();
     }
 
     @Override
@@ -53,17 +53,17 @@ public abstract class BattleCharacter extends GameCharacter implements IBattle{
 
     @Override
     public void gainExperience(int experience) {
-        IBattle.super.gainExperience(experience);
+        IClass.super.gainExperience(experience);
     }
 
     @Override
     public void levelUp() {
-        IBattle.super.levelUp();
+        IClass.super.levelUp();
     }
 
     @Override
     public boolean isAlive() {
-        return IBattle.super.isAlive();
+        return IClass.super.isAlive();
     }
 
     @Override

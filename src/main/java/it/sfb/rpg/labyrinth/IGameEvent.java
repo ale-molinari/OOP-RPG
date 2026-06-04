@@ -1,4 +1,4 @@
-package it.sfb.rpg.labyrinth.events;
+package it.sfb.rpg.labyrinth;
 
 import it.sfb.rpg.entities.PlayerCharacter;
 

@@ -1,8 +1,9 @@
 package it.sfb.rpg.labyrinth.events;
 
 import it.sfb.rpg.entities.PlayerCharacter;
+import it.sfb.rpg.labyrinth.IGameEvent;
 
-public class HealEvent extends Event {
+public class HealEvent implements IGameEvent {
     private int remainingTreatments = 3;
 
     @Override

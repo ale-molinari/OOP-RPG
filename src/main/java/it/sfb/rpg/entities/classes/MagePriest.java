@@ -1,8 +1,9 @@
 package it.sfb.rpg.entities.classes;
 
+import it.sfb.rpg.engine.interactions.IHealer;
 import it.sfb.rpg.engine.interactions.IHealth;
 
-public class MagePriest extends GameClass implements IMage, IPriest {
+public class MagePriest extends GameClass implements IMage, IPriest, IHealer {
 
     public MagePriest(int startingAttack, int startingHealth) {
         super(startingAttack, startingHealth);
@@ -12,10 +13,5 @@ public class MagePriest extends GameClass implements IMage, IPriest {
     public void damage(IHealth health) {
         IMage.super.damage(health);
         setHealth(getCurrentHealth() + (getAttackValue()/2));
-    }
-
-    @Override
-    public void heal(IHealth health) {
-        IPriest.super.heal(health);
     }
 }

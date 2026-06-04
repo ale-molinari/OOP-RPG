@@ -1,10 +1,11 @@
 package it.sfb.rpg.labyrinth.events;
 
 import it.sfb.rpg.entities.PlayerCharacter;
+import it.sfb.rpg.labyrinth.IGameEvent;
 
 import java.util.Random;
 
-public class CombatEvent extends Event {
+public class CombatEvent implements IGameEvent {
 
     private boolean isClear = false;
 

@@ -1,11 +1,11 @@
 package it.sfb.rpg.entities.classes;
 
 import it.sfb.rpg.engine.interactions.IHealth;
-import it.sfb.rpg.entities.IBattle;
+import it.sfb.rpg.entities.IClass;
 
 import java.util.Random;
 
-public interface IThief extends IBattle {
+public interface IThief extends IClass {
 
     default void damage(IHealth health) {
         Random random = new Random();

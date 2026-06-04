@@ -71,7 +71,7 @@ public class CharactersInteractionsTests {
     }
 
     @Test
-    public void testWarriorMagetAttack() throws Exception {
+    public void testWarriorMageAttack() throws Exception {
         PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorMage(3, 3)) { };
         PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(2, 2)) { };
         pg.damage(testCharacter);
@@ -132,7 +132,7 @@ public class CharactersInteractionsTests {
         int normal = 0;
         int attackAmount = 1000;
 
-        for (int i = 0; i<attackAmount; i++){
+        for (int i = 0; i < attackAmount; i++){
             PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorThief(3, 10)) { };
             PlayerCharacter pg = new PlayerCharacter("character", new WarriorThief(5, 10)) { };
             pg.damage(testCharacter);

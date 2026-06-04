@@ -4,5 +4,6 @@ public enum ECommands {
     MOVE,
     TALK,
     ATTACK,
+    HEAL,
     LOOK,
 }

@@ -1,16 +1,10 @@
 package it.sfb;
 
-
-import org.junit.Assert;
-import org.junit.Test;
-
+import it.sfb.rpg.engine.Engine;
 
 public class AppTest {
 
-    @Test
-    public void testHello() throws Exception {
-        App.main(new String[]{});
-        Assert.assertTrue(true);
+    public static void main(String[] args) {
+        Engine.start();
     }
-
 }

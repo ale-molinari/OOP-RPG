@@ -4,7 +4,6 @@ package it.sfb.rpg.labyrinth;
 import it.sfb.rpg.entities.PlayerCharacter;
 import it.sfb.rpg.labyrinth.events.CombatEvent;
 import it.sfb.rpg.labyrinth.events.HealEvent;
-import it.sfb.rpg.labyrinth.events.IGameEvent;
 import it.sfb.rpg.labyrinth.events.RewardEvent;
 
 import java.util.ArrayList;
@@ -12,16 +11,17 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.UUID;
 
-public abstract class Room implements IGameEvent{
+public abstract class Room {
 
     private String name;
     private UUID id;
     private RCoordinate coordinate;
     private final HashMap<EDirections, Room> exits;
-    IGameEvent event;
+    private IGameEvent event;
 
-    public Room(String name) {
+    public Room(String name, IGameEvent evnt) {
         this.name = name;
+        event = evnt;
         this.id = UUID.randomUUID();
         exits = new HashMap<>();
     }
@@ -62,11 +62,10 @@ public abstract class Room implements IGameEvent{
         this.id = id;
     }
 
-    @Override
-    public void triggerEvent(PlayerCharacter playerCharacter) {
+    public void triggerEvent(PlayerCharacter playercharacter) {
         if (this.event != null) {
-            this.event.triggerEvent(playerCharacter);
-        };
+            this.event.triggerEvent(playercharacter);
+        }
     }
 
     public abstract String getSymbol();

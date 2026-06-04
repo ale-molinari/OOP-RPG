@@ -1,13 +1,8 @@
 package it.sfb.rpg.entities;
 
-import it.sfb.rpg.engine.interactions.IHealth;
-import it.sfb.rpg.labyrinth.Room;
+public abstract class PlayerCharacter extends BattleCharacter implements IClass {
 
-import java.util.UUID;
-
-public abstract class PlayerCharacter extends BattleCharacter implements IBattle {
-
-    public PlayerCharacter(String name, IBattle clz) {
+    public PlayerCharacter(String name, IClass clz) {
         super(name, clz);
     }
 }

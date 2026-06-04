@@ -1,9 +1,9 @@
 package it.sfb.rpg.entities.classes;
 
 import it.sfb.rpg.engine.interactions.IHealth;
-import it.sfb.rpg.entities.IBattle;
+import it.sfb.rpg.entities.IClass;
 
-public class GameClass implements IBattle {
+public class GameClass implements IClass {
 
     private int attack;
     private int health;
@@ -31,12 +31,12 @@ public class GameClass implements IBattle {
 
     @Override
     public void damage(IHealth health) {
-        IBattle.super.damage(health);
+        IClass.super.damage(health);
     }
 
     @Override
     public int getExperienceThreshold() {
-        return IBattle.super.getExperienceThreshold();
+        return IClass.super.getExperienceThreshold();
     }
 
     @Override
@@ -61,17 +61,17 @@ public class GameClass implements IBattle {
 
     @Override
     public void gainExperience(int experience) {
-        IBattle.super.gainExperience(experience);
+        IClass.super.gainExperience(experience);
     }
 
     @Override
     public void levelUp() {
-        IBattle.super.levelUp();
+        IClass.super.levelUp();
     }
 
     @Override
     public boolean isAlive() {
-        return IBattle.super.isAlive();
+        return IClass.super.isAlive();
     }
 
     @Override
@@ -96,7 +96,7 @@ public class GameClass implements IBattle {
 
     @Override
     public boolean takeDamage(int damage) {
-        return IBattle.super.takeDamage(damage);
+        return IClass.super.takeDamage(damage);
     }
 
     @Override

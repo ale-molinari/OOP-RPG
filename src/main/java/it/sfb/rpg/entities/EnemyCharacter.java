@@ -1,10 +1,8 @@
 package it.sfb.rpg.entities;
 
-import it.sfb.rpg.engine.interactions.IHealth;
+public abstract class EnemyCharacter extends BattleCharacter implements IClass {
 
-public abstract class EnemyCharacter extends BattleCharacter implements IBattle {
-
-    public EnemyCharacter(String name, IBattle clz) {
+    public EnemyCharacter(String name, IClass clz) {
         super(name, clz);
     }
 }

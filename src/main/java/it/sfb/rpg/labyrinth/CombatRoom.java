@@ -1,16 +1,16 @@
 package it.sfb.rpg.labyrinth;
 
 import it.sfb.rpg.entities.EnemyCharacter;
-import it.sfb.rpg.labyrinth.events.IGameEvent;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CombatRoom extends Room {
+public class CombatRoom extends Room  {
+
     private ArrayList<EnemyCharacter> enemies;
 
-    public CombatRoom(String name, IGameEvent event) {
-        super(name);
-        this.event = event;
+    public CombatRoom(String name, IGameEvent evnt) {
+        super(name, evnt);
         this.enemies = new ArrayList<>();
     }
 
@@ -26,6 +26,11 @@ public class CombatRoom extends Room {
                 return true;
             }
         } return false;
+    }
+
+    public EnemyCharacter getFirstEnemy() {
+        if (this.enemies.isEmpty()) return null;
+        return this.enemies.getFirst();
     }
 
     @Override

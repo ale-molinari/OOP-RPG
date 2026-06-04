@@ -1,10 +1,11 @@
 package it.sfb.rpg.labyrinth.events;
 
 import it.sfb.rpg.entities.PlayerCharacter;
+import it.sfb.rpg.labyrinth.IGameEvent;
 
 import java.util.Random;
 
-public class RewardEvent extends Event{
+public class RewardEvent implements IGameEvent {
 
     private boolean isLooted = false;
 
