@@ -28,4 +28,11 @@ public class LabyrinthGeneratorTest {
         Labyrinth labyrinth = generator.generateLabyrinth(20);
         Assert.assertEquals(20, labyrinth.getRoomsNumber());
     }
+
+    @Test
+    public void LabyrinthGenerationNotNegativeTest() throws Exception {
+        LabyrinthGenerator generator = new LabyrinthGenerator();
+        Assert.assertThrows(IllegalArgumentException.class,
+                () -> generator.generateLabyrinth(-1));
+    }
 }

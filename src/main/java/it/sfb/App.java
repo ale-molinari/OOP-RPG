@@ -1,12 +1,11 @@
 package it.sfb;
 
-import it.sfb.rpg.engine.generator.LabyrinthGenerator;
-import it.sfb.rpg.entities.GameCharacter;
-import it.sfb.rpg.labyrinth.Labyrinth;
+import it.sfb.rpg.labyrinth.SafeRoom;
+import it.sfb.rpg.labyrinth.events.HealEvent;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello World!");
+        SafeRoom safeRoom = new SafeRoom("Safe Room", new HealEvent());
     }
 }

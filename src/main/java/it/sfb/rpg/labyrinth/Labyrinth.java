@@ -3,25 +3,29 @@ package it.sfb.rpg.labyrinth;
 import java.util.HashMap;
 
 public class Labyrinth {
-    private final HashMap<RCoordinate, Room> roomPosition;
+    private final HashMap<RCoordinate, Room> map;
 
     public Labyrinth() {
-        roomPosition = new HashMap<>();
+        map = new HashMap<>();
     }
 
     public void addRoom(RCoordinate coordinate, Room room) {
-        this.roomPosition.put(coordinate, room);
+        this.map.put(coordinate, room);
     }
 
     public Room getRoomPosition(RCoordinate coordinate) {
-        return this.roomPosition.get(coordinate);
+        return this.map.get(coordinate);
     }
 
     public boolean roomIsThere(RCoordinate coordinate) {
-        if (roomPosition.get(coordinate) != null) { }return true;
+        return map.containsKey(coordinate);
     }
 
     public int getRoomsNumber() {
-        return this.roomPosition.size();
+        return this.map.size();
+    }
+
+    public HashMap<RCoordinate, Room> getMap() {
+        return map;
     }
 }

@@ -5,4 +5,5 @@ import it.sfb.rpg.engine.interactions.IExperience;
 import it.sfb.rpg.engine.interactions.IHealth;
 
 public interface IBattle extends IHealth, IAttack, IExperience {
+
 }

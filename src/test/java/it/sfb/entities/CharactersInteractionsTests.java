@@ -1,13 +1,8 @@
 package it.sfb.entities;
 
-import it.sfb.rpg.controllers.Player;
 import it.sfb.rpg.entities.EnemyCharacter;
-import it.sfb.rpg.entities.GameCharacter;
 import it.sfb.rpg.entities.PlayerCharacter;
-import it.sfb.rpg.entities.classes.Deprived;
-import it.sfb.rpg.entities.classes.Mage;
-import it.sfb.rpg.entities.classes.Priest;
-import it.sfb.rpg.entities.classes.Warrior;
+import it.sfb.rpg.entities.classes.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,53 +10,60 @@ public class CharactersInteractionsTests {
 
     @Test
     public void testWarriorDefense() throws Exception {
-        GameCharacter testCharacter = new GameCharacter(new Deprived("character", 2, 1)) { };
-        EnemyCharacter pg = new EnemyCharacter(new Warrior("warrior", 1, 10));
-        testCharacter.getRole().damage(pg.getRole());
-        Assert.assertEquals(9, pg.getCurrentHealth());
+        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(5, 10)) {
+        };
+        EnemyCharacter pg2 = new EnemyCharacter("enemy", new WarriorMage(1, 10)) {
+        };
+        pg.damage(pg2);
+        Assert.assertEquals(5, pg2.getCurrentHealth());
     }
 
     @Test
     public void testCharacterLevelUp() throws Exception {
-        GameCharacter testCharacter = new GameCharacter(new Deprived("character", 2, 1)) { };
-        Warrior pg = new Warrior("warrior", 1, 10);
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorMage(2, 2)) {
+        };
+        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(2, 2)) {
+        };
         pg.setCurrentExperience(30);
-        testCharacter.getRole().gainExperience(pg.getCurrentExperience());
+        testCharacter.gainExperience(pg.getCurrentExperience());
         Assert.assertEquals(3, testCharacter.getLevel());
     }
 
     @Test
-    public void testIsDead() throws  Exception {
-        GameCharacter testCharacter = new GameCharacter(new Deprived("character", 2, 1)) { };
-        Warrior pg = new Warrior("warrior", 10, 10);
-        testCharacter.getRole().takeDamage(pg.getAttackValue());
-        Assert.assertFalse(testCharacter.getRole().isAlive());
+    public void testIsDead() throws Exception {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(2, 2)) {
+        };
+        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(5, 2)) {
+        };
+        testCharacter.takeDamage(pg.getAttackValue());
+        Assert.assertFalse(testCharacter.isAlive());
     }
 
     @Test
-    public void testIsAlive() throws  Exception {
-        GameCharacter testCharacter = new GameCharacter(new Deprived("character", 2, 10)) { };
-        Warrior pg = new Warrior("warrior", 9, 10);
-        testCharacter.getRole().takeDamage(pg.getAttackValue());
-        Assert.assertTrue(testCharacter.getRole().isAlive());
+    public void testIsAlive() throws Exception {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorMage(2, 20)) {
+        };
+        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(2, 2)) {
+        };
+        testCharacter.takeDamage(pg.getAttackValue());
+        Assert.assertTrue(testCharacter.isAlive());
     }
 
     @Test
     public void testMageAttack() throws Exception {
-        GameCharacter testCharacter = new GameCharacter(new Deprived("character", 2, 4)) { };
-        Mage pg = new Mage("Mage", 1, 10);
-        pg.damage(testCharacter.getRole());
-        Assert.assertEquals(2, testCharacter.getCurrentHealth());
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 3)) { };
+        PlayerCharacter pg = new PlayerCharacter("character", new MagePriest(1, 2)) { };
+        pg.damage(testCharacter);
+        Assert.assertEquals(1, testCharacter.getCurrentHealth());
     }
 
     @Test
     public void testPriestRestoreHP() throws Exception {
-        GameCharacter testCharacter = new GameCharacter(new Deprived ("character", 3, 10)) { };
-        Warrior pg = new Warrior("warrior", 4, 10);
-        pg.damage(testCharacter.getRole());
-        Priest priest  = new Priest("Priest", 1, 10);
-        priest.damage(testCharacter.getRole());
-        Assert.assertEquals(8, testCharacter.getCurrentHealth());
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 10)) { };
+        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(3, 2)) { };
+        PlayerCharacter pg2 = new PlayerCharacter("character", new WarriorPriest(1, 2)) { };
+        testCharacter.damage(pg);
+        pg2.damage(pg);
+        Assert.assertEquals(10, testCharacter.getCurrentHealth());
     }
-
 }

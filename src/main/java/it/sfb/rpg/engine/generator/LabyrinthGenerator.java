@@ -5,10 +5,10 @@ import it.sfb.rpg.labyrinth.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class LabyrinthGenerator implements RoomGenerator {
+public class LabyrinthGenerator {
 
-    private int seed;
-    private Random random;
+    private final int seed;
+    private final Random random;
 
     public LabyrinthGenerator(int seed) {
         this.seed = seed;
@@ -23,7 +23,7 @@ public class LabyrinthGenerator implements RoomGenerator {
     public Labyrinth generateLabyrinth(int numberOfRooms) {
 
         Labyrinth labyrinth = new Labyrinth();
-        ArrayList<Room> rooms = roomGenerator(numberOfRooms);
+        ArrayList<Room> rooms = Room.roomGenerator(numberOfRooms);
 
         Room safeRoom = rooms.removeFirst();
         RCoordinate baseCoordinate = safeRoom.getCoordinate();

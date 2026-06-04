@@ -1,7 +1,15 @@
 package it.sfb.rpg.labyrinth;
 
 
+import it.sfb.rpg.entities.PlayerCharacter;
+import it.sfb.rpg.labyrinth.events.CombatEvent;
+import it.sfb.rpg.labyrinth.events.HealEvent;
+import it.sfb.rpg.labyrinth.events.IGameEvent;
+import it.sfb.rpg.labyrinth.events.RewardEvent;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.UUID;
 
 public abstract class Room {
@@ -10,11 +18,12 @@ public abstract class Room {
     private UUID id;
     private RCoordinate coordinate;
     private final HashMap<EDirections, Room> exits;
+    IGameEvent event;
 
     public Room(String name) {
         this.name = name;
         this.id = UUID.randomUUID();
-        this.exits = new HashMap<>();
+        exits = new HashMap<>();
     }
 
     public Room getExit(EDirections direction) {
@@ -33,6 +42,10 @@ public abstract class Room {
         this.coordinate = coordinate;
     }
 
+    public Set<EDirections> getAvailableDirections() {
+        return exits.keySet();
+    }
+
     public String getName() {
         return name;
     }
@@ -47,5 +60,37 @@ public abstract class Room {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public void triggerEvent(PlayerCharacter playerCharacter) {
+        if (this.event != null) {
+            this.event.triggerEvent(playerCharacter);
+        };
+    }
+
+    public abstract String getSymbol();
+
+    public static ArrayList<Room> roomGenerator(int n) {
+
+        int roomAmount = Math.clamp(n, 0, 20);
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        if (roomAmount > 0) {
+            SafeRoom spawnRoom = new SafeRoom("Spawn Room", new HealEvent());
+            spawnRoom.setCoordinate(new RCoordinate(0, 0));
+            rooms.add(spawnRoom);
+        } else {
+            throw new IllegalArgumentException("Room amount must be greater than 0");
+        }
+
+        for (int i = 1; i < roomAmount; i++) {
+            if (i == roomAmount-1) {
+                rooms.add(new TreasureRoom("Treasure Room", new RewardEvent()));
+            } else {
+                rooms.add(new CombatRoom("Hostile Room", new CombatEvent()));
+            }
+        }
+
+        return rooms;
     }
 }

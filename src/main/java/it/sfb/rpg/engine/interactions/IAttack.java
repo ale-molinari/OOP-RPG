@@ -11,5 +11,4 @@ public interface IAttack {
     default void damage(IHealth health) {
         health.takeDamage(getAttackValue());
     }
-
 }
