@@ -1,7 +1,6 @@
 package it.sfb.rpg.labyrinth;
 
 import it.sfb.rpg.entities.EnemyCharacter;
-import it.sfb.rpg.entities.GameCharacter;
 import it.sfb.rpg.labyrinth.events.IGameEvent;
 
 import java.util.ArrayList;

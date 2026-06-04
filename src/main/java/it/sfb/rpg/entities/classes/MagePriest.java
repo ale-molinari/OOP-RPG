@@ -13,4 +13,9 @@ public class MagePriest extends GameClass implements IMage, IPriest {
         IMage.super.damage(health);
         setHealth(getCurrentHealth() + (getAttackValue()/2));
     }
+
+    @Override
+    public void heal(IHealth health) {
+        IPriest.super.heal(health);
+    }
 }

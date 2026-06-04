@@ -20,4 +20,6 @@ public interface IHealth {
         return isAlive();
     }
 
+    void heal(IHealth health);
+
 }

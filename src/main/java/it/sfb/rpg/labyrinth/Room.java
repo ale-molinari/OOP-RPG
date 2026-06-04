@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.UUID;
 
-public abstract class Room {
+public abstract class Room implements IGameEvent{
 
     private String name;
     private UUID id;
@@ -62,6 +62,7 @@ public abstract class Room {
         this.id = id;
     }
 
+    @Override
     public void triggerEvent(PlayerCharacter playerCharacter) {
         if (this.event != null) {
             this.event.triggerEvent(playerCharacter);

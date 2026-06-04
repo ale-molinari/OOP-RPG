@@ -1,37 +1,29 @@
-package it.sfb.rpg.entities.classes;
+package it.sfb.rpg.entities;
 
 import it.sfb.rpg.engine.interactions.IHealth;
-import it.sfb.rpg.entities.IBattle;
 
-public class GameClass implements IBattle {
+public abstract class BattleCharacter extends GameCharacter implements IBattle{
 
-    private int attack;
-    private int health;
-    private int currentHealth;
-    private int level;
-    private int currentExperience;
+    private IBattle gameClass;
 
-    public GameClass(int startingAttack, int startingHealth) {
-        this.attack = startingAttack;
-        this.health = startingHealth;
-        this.currentHealth = startingHealth;
-        this.level = 1;
-        this.currentExperience = 0;
+    public BattleCharacter(String name, IBattle clz) {
+        super(name);
+        gameClass = clz;
     }
 
     @Override
     public int getAttackValue() {
-        return this.attack;
+        return this.gameClass.getAttackValue();
     }
 
     @Override
     public void setAttackValue(int attack) {
-        this.attack = attack;
+        this.gameClass.setAttackValue(attack);
     }
 
     @Override
     public void damage(IHealth health) {
-        IBattle.super.damage(health);
+        gameClass.damage(health);
     }
 
     @Override
@@ -41,22 +33,22 @@ public class GameClass implements IBattle {
 
     @Override
     public int getCurrentExperience() {
-        return this.currentExperience;
+        return this.gameClass.getCurrentExperience();
     }
 
     @Override
     public void setCurrentExperience(int experience) {
-        this.currentExperience = experience;
+        this.gameClass.setCurrentExperience(experience);
     }
 
     @Override
     public int getLevel() {
-        return this.level;
+        return this.gameClass.getLevel();
     }
 
     @Override
     public void setLevel(int level) {
-        this.level = level;
+        this.gameClass.setLevel(level);
     }
 
     @Override
@@ -76,31 +68,32 @@ public class GameClass implements IBattle {
 
     @Override
     public int getHealth() {
-        return this.health;
+        return this.gameClass.getHealth();
     }
 
     @Override
     public void setHealth(int hp) {
-        this.health = hp;
+        this.gameClass.setHealth(hp);
     }
 
     @Override
     public int getCurrentHealth() {
-        return this.currentHealth;
+        return this.gameClass.getCurrentHealth();
     }
 
     @Override
     public void setCurrentHealth(int currentHp) {
-        this.currentHealth = currentHp;
+        this.gameClass.setCurrentHealth(currentHp);
     }
 
     @Override
     public boolean takeDamage(int damage) {
-        return IBattle.super.takeDamage(damage);
+        return gameClass.takeDamage(damage);
     }
 
     @Override
-    public void heal(IHealth health) {
-        System.out.println("You can't heal nobody");
+    public void heal(IHealth health){
+        gameClass.heal(health);
     }
 }
+
