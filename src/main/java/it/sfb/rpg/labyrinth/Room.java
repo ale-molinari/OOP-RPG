@@ -1,6 +1,5 @@
 package it.sfb.rpg.labyrinth;
 
-
 import it.sfb.rpg.entities.PlayerCharacter;
 import it.sfb.rpg.labyrinth.events.CombatEvent;
 import it.sfb.rpg.labyrinth.events.HealEvent;
@@ -62,9 +61,13 @@ public abstract class Room {
         this.id = id;
     }
 
-    public void triggerEvent(PlayerCharacter playercharacter) {
+    public IGameEvent getEvent() {
+        return this.event;
+    }
+
+    public void triggerEvent(PlayerCharacter player) {
         if (this.event != null) {
-            this.event.triggerEvent(playercharacter);
+            this.event.triggerEvent(player);
         }
     }
 

@@ -1,14 +1,13 @@
 package it.sfb.rpg.entities.classes;
 
-import it.sfb.rpg.engine.interactions.IHealer;
 import it.sfb.rpg.engine.interactions.IHealth;
 
-public class WarriorPriest extends GameClass implements IWarrior, IPriest, IHealer {
+public class WarriorPriest extends GameClass implements IWarrior, IPriest {
 
     public WarriorPriest(int startingAttack, int startingHealth) {
         super(startingAttack, startingHealth);
     }
-    public void damage(IHealth health) {
+    public void damage(IHealth health, boolean mustCure) {
         IPriest.super.damage(health);
     }
 

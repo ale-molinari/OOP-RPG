@@ -9,6 +9,9 @@ public class CombatEvent implements IGameEvent {
 
     private boolean isClear = false;
 
+    public CombatEvent(){
+    }
+
     @Override
     public void triggerEvent(PlayerCharacter playerCharacter) {
 

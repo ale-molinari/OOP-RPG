@@ -1,10 +1,13 @@
 package it.sfb.rpg.entities;
 
 import it.sfb.rpg.engine.interactions.IHealth;
+import it.sfb.rpg.engine.interactions.IStats;
+
+import java.util.Map;
 
 public abstract class BattleCharacter extends GameCharacter implements IClass {
 
-    private IClass gameClass;
+    private final IClass gameClass;
 
     public BattleCharacter(String name, IClass clz) {
         super(name);
@@ -92,8 +95,8 @@ public abstract class BattleCharacter extends GameCharacter implements IClass {
     }
 
     @Override
-    public void heal(IHealth health){
-        gameClass.heal(health);
+    public Map<String, Integer> getStats(){
+        return gameClass.getStats();
     }
 }
 

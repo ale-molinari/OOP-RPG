@@ -9,6 +9,9 @@ public class RewardEvent implements IGameEvent {
 
     private boolean isLooted = false;
 
+    public RewardEvent() {
+    }
+
     @Override
     public void triggerEvent(PlayerCharacter playerCharacter) {
 

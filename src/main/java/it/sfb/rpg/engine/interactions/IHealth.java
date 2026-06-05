@@ -19,7 +19,4 @@ public interface IHealth {
         setCurrentHealth(finalHp);
         return isAlive();
     }
-
-    void heal(IHealth health);
-
 }

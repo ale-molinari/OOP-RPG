@@ -2,51 +2,41 @@ package it.sfb.rpg.engine;
 
 import it.sfb.rpg.engine.commands.CommandIngester;
 import it.sfb.rpg.engine.commands.ECommands;
-import it.sfb.rpg.engine.commands.MovementController;
-import it.sfb.rpg.engine.generator.LabyrinthGenerator;
-import it.sfb.rpg.entities.EnemyCharacter;
-import it.sfb.rpg.entities.PlayerCharacter;
-import it.sfb.rpg.entities.classes.WarriorThief;
-import it.sfb.rpg.labyrinth.Labyrinth;
 
 import java.util.Scanner;
 
 public class Engine {
 
-    private Scanner scanner = new Scanner(System.in);
     private static boolean running = true;
-    private LabyrinthGenerator generator;
-    private Labyrinth labyrinth;
-    private PlayerCharacter player;
-    private EnemyCharacter enemy;
 
     public Engine(){
     };
 
-    public static void start(){
+    public static void start(CommandIngester ingester, GameContext gameContext){
         System.out.println("Game started");
-
-        LabyrinthGenerator generator = new LabyrinthGenerator();
-        Labyrinth labyrinth = generator.generateLabyrinth(10);
-        PlayerCharacter pg = new PlayerCharacter("Franco", new WarriorThief(10,10)) {
-        };
-        MovementController controller = new MovementController(labyrinth, pg);
-        CommandIngester ingester = new CommandIngester(controller);
-
         while(running){
-            System.out.println("Enter command(MOVE,LOOK): ");
+            System.out.println("Enter command(MOVE,LOOK,ATTACK,STATS,QUIT): ");
             Scanner scanner = new Scanner(System.in);
-            String command = scanner.nextLine().trim().toUpperCase();
+            String commandStr = scanner.nextLine().trim().toUpperCase();
 
-            try {
-                ingester.processInput(ECommands.valueOf(command));
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid command");
-                continue;
+            if (commandStr.equals("QUIT")) {
+                System.out.println("Game ended");
+                running = false;
+                break;
             }
 
-            ingester.processInput(ECommands.valueOf(command));
-            System.out.println(labyrinth.getRoomPosition(controller.getPlayerPosition()));
+            try {
+                ECommands command = ECommands.valueOf(commandStr);
+                String argument = "";
+                if (command.equals(ECommands.valueOf("MOVE")) || command.equals(ECommands.valueOf("LOOK"))) {
+                    System.out.println("Enter direction: " + gameContext.getCurrentRoom().getAvailableDirections());
+                    argument = scanner.nextLine().trim().toUpperCase();
+                }
+                ingester.processInput(command, argument);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid command");
+            }
         }
     };
 }

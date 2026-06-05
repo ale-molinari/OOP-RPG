@@ -6,6 +6,9 @@ import it.sfb.rpg.labyrinth.IGameEvent;
 public class HealEvent implements IGameEvent {
     private int remainingTreatments = 3;
 
+    public HealEvent(){
+    }
+
     @Override
     public void triggerEvent(PlayerCharacter playerCharacter) {
         if (playerCharacter.getCurrentHealth() == playerCharacter.getHealth()) {

@@ -1,11 +1,11 @@
-package it.sfb.rpg.engine.generator;
+package it.sfb.rpg.engine.printer;
 
 import it.sfb.rpg.labyrinth.Labyrinth;
 import it.sfb.rpg.labyrinth.RCoordinate;
 
 public class MapPrinter {
 
-    public void printMap(Labyrinth labyrinth) {
+    public static void printMap(Labyrinth labyrinth) {
 
         int maxX = Integer.MIN_VALUE;
         int maxY = Integer.MIN_VALUE;

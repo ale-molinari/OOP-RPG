@@ -1,15 +1,5 @@
 package it.sfb.engine.commands;
 
-import it.sfb.rpg.engine.commands.MovementController;
-import it.sfb.rpg.engine.generator.LabyrinthGenerator;
-import it.sfb.rpg.entities.PlayerCharacter;
-import it.sfb.rpg.entities.classes.MagePriest;
-import it.sfb.rpg.labyrinth.EDirections;
-import it.sfb.rpg.labyrinth.Labyrinth;
-import it.sfb.rpg.labyrinth.RCoordinate;
-import it.sfb.rpg.labyrinth.Room;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 

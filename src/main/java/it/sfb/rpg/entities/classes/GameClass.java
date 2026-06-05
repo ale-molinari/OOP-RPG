@@ -1,9 +1,14 @@
 package it.sfb.rpg.entities.classes;
 
 import it.sfb.rpg.engine.interactions.IHealth;
+import it.sfb.rpg.engine.interactions.IStats;
 import it.sfb.rpg.entities.IClass;
 
-public class GameClass implements IClass {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class GameClass implements IClass, IStats {
 
     private int attack;
     private int health;
@@ -100,7 +105,12 @@ public class GameClass implements IClass {
     }
 
     @Override
-    public void heal(IHealth health) {
-        System.out.println("You can't heal nobody");
+    public Map<String, Integer> getStats() {
+        Map<String, Integer> stats = new HashMap<>();
+        stats.put("Level", this.level);
+        stats.put("Attack", this.attack);
+        stats.put("Health", this.currentHealth);
+        stats.put("Experience", this.currentExperience);
+        return stats;
     }
 }

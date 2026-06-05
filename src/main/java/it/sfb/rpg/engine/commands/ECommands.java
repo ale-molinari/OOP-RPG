@@ -6,4 +6,6 @@ public enum ECommands {
     ATTACK,
     HEAL,
     LOOK,
+    QUIT,
+    STATS
 }
