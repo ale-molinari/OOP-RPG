@@ -13,6 +13,7 @@ public class CommandIngester {
 
     public void processInput(ECommands input, String argument) {
 
+        //TODO: Fix this switch for improve heap memory management
         ICommandHandler handler = switch (input) {
             case MOVE -> new MovementCommand();
             case LOOK -> new LookCommand();
