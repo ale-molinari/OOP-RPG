@@ -1,5 +1,6 @@
 package it.sfb.rpg.items.potions;
 
+import it.sfb.rpg.entities.BattleCharacter;
 import it.sfb.rpg.entities.PlayerCharacter;
 
 public class ExpPotion extends Potion{
@@ -20,7 +21,7 @@ public class ExpPotion extends Potion{
     }
 
     @Override
-    public void use(PlayerCharacter player) {
-        player.gainExperience(player.getCurrentExperience() + expAmount);
+    public void use(BattleCharacter character) {
+        character.gainExperience(expAmount);
     }
 }

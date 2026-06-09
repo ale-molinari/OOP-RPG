@@ -1,5 +1,6 @@
 package it.sfb.rpg.items.potions;
 
+import it.sfb.rpg.entities.BattleCharacter;
 import it.sfb.rpg.entities.PlayerCharacter;
 
 public class HealPotion extends Potion{
@@ -19,8 +20,8 @@ public class HealPotion extends Potion{
     }
 
     @Override
-    public void use(PlayerCharacter player) {
-        int healedHp = Math.clamp(player.getCurrentHealth() + healAmount, 0, player.getHealth());
-        player.setCurrentHealth(healedHp);
+    public void use(BattleCharacter character) {
+        int healedHp = Math.clamp(character.getCurrentHealth() + healAmount, 0, character.getHealth());
+        character.setCurrentHealth(healedHp);
     };
 }

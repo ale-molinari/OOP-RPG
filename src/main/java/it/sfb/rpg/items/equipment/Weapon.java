@@ -7,11 +7,10 @@ public abstract class Weapon implements IItem {
 
     private String name;
     private int attackBuff;
-    private EItemCategory category;
+    private final EItemCategory category = EItemCategory.WEAPON;
 
     public Weapon(String name) {
         this.name = name;
-        this.category = EItemCategory.WEAPON;
     }
 
     @Override

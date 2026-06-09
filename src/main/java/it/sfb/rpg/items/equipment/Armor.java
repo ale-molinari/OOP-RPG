@@ -7,11 +7,10 @@ public abstract class Armor implements IItem {
 
     private int healthBuff;
     private String name;
-    private EItemCategory category;
+    private final EItemCategory category =  EItemCategory.ARMOR;
 
     public Armor(String name) {
         this.name = name;
-        this.category = EItemCategory.ARMOR;
     }
 
     @Override

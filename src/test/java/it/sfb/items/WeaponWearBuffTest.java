@@ -12,8 +12,9 @@ public class WeaponWearBuffTest {
     public void PocketKnifeBuffTest() throws Exception {
         PlayerCharacter pg = new PlayerCharacter("test character", new Priest(10, 10)) {
         };
-        PocketKnife knife = new PocketKnife("pocket knife", 5);
-        knife.wearBy(pg);
+        PocketKnife knife = new PocketKnife("pocket knife");
+        pg.getInventory().addItem(knife);
+        pg.changeWeapon(knife);
         Assert.assertEquals(15, pg.getAttackValue());
     }
 }

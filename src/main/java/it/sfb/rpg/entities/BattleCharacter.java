@@ -2,8 +2,7 @@ package it.sfb.rpg.entities;
 
 import it.sfb.rpg.engine.interactions.IHealth;
 import it.sfb.rpg.items.equipment.EquipmentManager;
-import it.sfb.rpg.items.potions.IItem;
-import it.sfb.rpg.items.potions.Inventory;
+import it.sfb.rpg.items.potions.IConsumable;
 
 import java.util.Map;
 
@@ -15,7 +14,7 @@ public abstract class BattleCharacter extends GameCharacter implements IClass {
     public BattleCharacter(String name, IClass clz) {
         super(name);
         gameClass = clz;
-        this.equipment = new EquipmentManager();
+        equipment = new EquipmentManager();
     }
 
     @Override

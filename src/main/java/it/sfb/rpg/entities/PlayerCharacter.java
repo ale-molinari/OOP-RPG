@@ -1,7 +1,7 @@
 package it.sfb.rpg.entities;
 
+import it.sfb.rpg.items.potions.IConsumable;
 import it.sfb.rpg.items.potions.IItem;
-import it.sfb.rpg.items.potions.Inventory;
 import it.sfb.rpg.items.equipment.Armor;
 import it.sfb.rpg.items.equipment.Weapon;
 
@@ -13,21 +13,33 @@ public abstract class PlayerCharacter extends BattleCharacter implements IClass 
         super(name, clz);
     }
 
+    public void equipWeapon(Weapon weapon) {
+
+    }
+
     public void changeWeapon(Weapon weapon) {
-        this.getInventory().remove(weapon);
-        Weapon oldWeapon = this.getEquipment().equipWeapon(weapon);
-        if(oldWeapon != null) {
-            getInventory().addItem(oldWeapon);
+        if (this.getInventory().remove(weapon)) {
+            Weapon oldWeapon = this.getEquipment().equipWeapon(weapon);
+            if (oldWeapon != null) {
+                getInventory().addItem(oldWeapon);
+            }
+        } else {
+            System.out.println("Item not found");
         }
+
     }
 
     public void changeArmor(Armor armor) {
-        this.getInventory().remove(armor);
-        Armor oldArmor = this.getEquipment().equipArmor(armor);
-        if(oldArmor != null) {
-            getInventory().addItem(oldArmor);
+        if (this.getInventory().remove(armor)) {
+            Armor oldArmor = this.getEquipment().equipArmor(armor);
+            if (oldArmor != null) {
+                getInventory().addItem(oldArmor);
+            }
+        } else {
+            System.out.println("Item not found");
         }
     }
+
 
     public void takeLoot(List<IItem> items) {
         for(IItem item : items) {
@@ -35,5 +47,13 @@ public abstract class PlayerCharacter extends BattleCharacter implements IClass 
                 this.getInventory().addItem(item);
             }
         }
+    }
+
+    public boolean consumeItem(IConsumable consumable) {
+        if (this.getInventory().remove(consumable)) {
+            consumable.use(this);
+            return true;
+        }
+        return false;
     }
 }

@@ -15,7 +15,7 @@ public class Inventory<T extends IItem> {
     }
 
     public void addItem(T item) {
-        if(items.size() > maxItems) {
+        if(items.size() >= maxItems) {
             throw new IllegalArgumentException("Inventory full! Cannot add more items!");
         }
         items.add(item);
@@ -25,8 +25,8 @@ public class Inventory<T extends IItem> {
         return items;
     }
 
-    public void remove(T item) {
-        items.remove(item);
+    public boolean remove(T item) {
+        return items.remove(item);
     }
 
     public T getItem(int index) {
