@@ -9,5 +9,4 @@ public interface IPriest extends IClass {
         int dmg = getAttackValue();
         health.takeDamage(-dmg);
     }
-    //TODO: Understand how to create a heal method different from this
 }
