@@ -1,19 +1,27 @@
 package it.sfb.rpg.items.equipment;
 
-import it.sfb.rpg.entities.BattleCharacter;
+import it.sfb.rpg.items.EItemCategory;
+import it.sfb.rpg.items.potions.IItem;
 
-public abstract class Weapon implements IWearable{
+public abstract class Weapon implements IItem {
 
     private String name;
     private int attackBuff;
+    private EItemCategory category;
 
-    public Weapon(String name, int attackBuff) {
+    public Weapon(String name) {
         this.name = name;
-        this.attackBuff = attackBuff;
+        this.category = EItemCategory.WEAPON;
     }
 
+    @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public EItemCategory getCategory() {
+        return category;
     }
 
     public int getAttackBuff() {
@@ -26,10 +34,5 @@ public abstract class Weapon implements IWearable{
 
     public void setAttackBuff(int attackBuff) {
         this.attackBuff = attackBuff;
-    }
-
-    @Override
-    public void wearBy(BattleCharacter pg) {
-        pg.setAttackValue(pg.getAttackValue() + getAttackBuff());
     }
 }

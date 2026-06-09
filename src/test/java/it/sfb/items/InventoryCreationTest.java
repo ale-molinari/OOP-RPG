@@ -1,7 +1,7 @@
 package it.sfb.items;
 
-import it.sfb.rpg.items.IItem;
-import it.sfb.rpg.items.Inventory;
+import it.sfb.rpg.items.potions.IItem;
+import it.sfb.rpg.items.potions.Inventory;
 import it.sfb.rpg.items.equipment.PocketKnife;
 import it.sfb.rpg.items.equipment.Sword;
 import it.sfb.rpg.items.equipment.Weapon;
@@ -16,8 +16,8 @@ public class InventoryCreationTest {
     @Test
     public void WeaponInventoryCreationTest() throws Exception {
         Inventory<Weapon> inventory = new Inventory<>();
-        PocketKnife pocketKnife = new PocketKnife("knife", 10);
-        Sword sword = new Sword("sword", 10);
+        PocketKnife pocketKnife = new PocketKnife("knife");
+        Sword sword = new Sword("sword");
         inventory.addItem(pocketKnife);
         inventory.addItem(sword);
         Assert.assertEquals(2, inventory.getItems().size());
@@ -41,7 +41,7 @@ public class InventoryCreationTest {
     public void GenericInventoryCreationTest() throws Exception {
         Inventory<IItem>  inventory = new Inventory<>();
         HealPotion healPotion = new HealPotion(20);
-        PocketKnife pocketKnife = new PocketKnife("knife", 10);
+        PocketKnife pocketKnife = new PocketKnife("knife");
         inventory.addItem(healPotion);
         inventory.addItem(pocketKnife);
         Assert.assertEquals(2, inventory.getItems().size());

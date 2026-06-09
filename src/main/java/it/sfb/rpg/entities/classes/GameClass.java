@@ -3,8 +3,9 @@ package it.sfb.rpg.entities.classes;
 import it.sfb.rpg.engine.interactions.IHealth;
 import it.sfb.rpg.engine.interactions.IStats;
 import it.sfb.rpg.entities.IClass;
+import it.sfb.rpg.items.equipment.Armor;
+import it.sfb.rpg.items.equipment.Weapon;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ public class GameClass implements IClass, IStats {
     private int currentHealth;
     private int level;
     private int currentExperience;
+    private int currentAttack;
+
 
     public GameClass(int startingAttack, int startingHealth) {
         this.attack = startingAttack;
@@ -22,6 +25,7 @@ public class GameClass implements IClass, IStats {
         this.currentHealth = startingHealth;
         this.level = 1;
         this.currentExperience = 0;
+        this.currentAttack = startingAttack;
     }
 
     @Override

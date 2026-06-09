@@ -5,7 +5,10 @@ import it.sfb.rpg.entities.PlayerCharacter;
 
 public class Sword extends Weapon {
 
-    public Sword(String name, int attackBuff) {
-        super(name, attackBuff);
+    private final int damage = 10;
+
+    public Sword(String name) {
+        super(name);
+        this.setAttackBuff(damage);
     }
 }

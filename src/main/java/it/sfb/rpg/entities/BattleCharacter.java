@@ -1,22 +1,26 @@
 package it.sfb.rpg.entities;
 
 import it.sfb.rpg.engine.interactions.IHealth;
-import it.sfb.rpg.engine.interactions.IStats;
+import it.sfb.rpg.items.equipment.EquipmentManager;
+import it.sfb.rpg.items.potions.IItem;
+import it.sfb.rpg.items.potions.Inventory;
 
 import java.util.Map;
 
 public abstract class BattleCharacter extends GameCharacter implements IClass {
 
     private final IClass gameClass;
+    private final EquipmentManager equipment;
 
     public BattleCharacter(String name, IClass clz) {
         super(name);
         gameClass = clz;
+        this.equipment = new EquipmentManager();
     }
 
     @Override
     public int getAttackValue() {
-        return this.gameClass.getAttackValue();
+        return this.gameClass.getAttackValue() + this.equipment.calculateDamageBonus();
     }
 
     @Override
@@ -71,7 +75,7 @@ public abstract class BattleCharacter extends GameCharacter implements IClass {
 
     @Override
     public int getHealth() {
-        return this.gameClass.getHealth();
+        return this.gameClass.getHealth() + this.equipment.calculateHealthBonus();
     }
 
     @Override
@@ -97,6 +101,10 @@ public abstract class BattleCharacter extends GameCharacter implements IClass {
     @Override
     public Map<String, Integer> getStats(){
         return gameClass.getStats();
+    }
+
+    public EquipmentManager getEquipment() {
+        return equipment;
     }
 }
 

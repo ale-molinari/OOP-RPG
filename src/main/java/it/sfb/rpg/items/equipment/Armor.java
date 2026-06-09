@@ -1,21 +1,31 @@
 package it.sfb.rpg.items.equipment;
 
-public abstract class Armor implements IWearable{
+import it.sfb.rpg.items.EItemCategory;
+import it.sfb.rpg.items.potions.IItem;
+
+public abstract class Armor implements IItem {
 
     private int healthBuff;
     private String name;
+    private EItemCategory category;
 
-    public Armor(String name, int healthBuff) {
+    public Armor(String name) {
         this.name = name;
-        this.healthBuff = healthBuff;
+        this.category = EItemCategory.ARMOR;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public EItemCategory getCategory() {
+        return this.category;
     }
 
     public int getHealthBuff() {
         return healthBuff;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {

@@ -4,7 +4,10 @@ import it.sfb.rpg.entities.classes.Warrior;
 
 public class PocketKnife extends Weapon {
 
-    public PocketKnife(String name, int attackBuff) {
-        super(name, attackBuff);
+    private final int damage = 5;
+
+    public PocketKnife(String name) {
+        super(name);
+        this.setAttackBuff(damage);
     }
 }
