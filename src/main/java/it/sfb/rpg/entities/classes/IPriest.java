@@ -7,6 +7,15 @@ public interface IPriest extends IClass {
 
     default void damage(IHealth health) {
         int dmg = getAttackValue();
-        health.takeDamage(-dmg);
+        health.takeDamage(dmg);
+    }
+    /**
+     * Specific method for Priest classes for heal other pgs
+     * @param health health of the pg to cure
+     */
+
+    default void doSpecialAbility(IHealth health){
+        int heal = getAttackValue()*2;
+        health.takeDamage(-heal);
     }
 }

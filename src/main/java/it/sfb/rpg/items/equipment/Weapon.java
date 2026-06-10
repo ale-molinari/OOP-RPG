@@ -3,7 +3,7 @@ package it.sfb.rpg.items.equipment;
 import it.sfb.rpg.items.EItemCategory;
 import it.sfb.rpg.items.potions.IItem;
 
-public abstract class Weapon implements IItem {
+public abstract class Weapon implements IEquippable<Weapon> {
 
     private String name;
     private int attackBuff;
@@ -21,6 +21,16 @@ public abstract class Weapon implements IItem {
     @Override
     public EItemCategory getCategory() {
         return category;
+    }
+
+    /**
+     * Enters the weapon slot of the equipment manager.
+     * @param manager the manager handling the equipment
+     * @return the previously equipped weapon, or null
+     */
+    @Override
+    public Weapon equipOn(EquipmentManager manager){
+        return manager.equipWeapon(this);
     }
 
     public int getAttackBuff() {

@@ -9,5 +9,4 @@ public interface IMage extends IClass {
         int dmg = getAttackValue()+getLevel();
         health.takeDamage(dmg);
     }
-
 }

@@ -11,4 +11,6 @@ public interface IWarrior extends IClass {
         return IClass.super.takeDamage(Math.clamp(damage-getLevel(), 0, damage));
     }
 
+
+
 }

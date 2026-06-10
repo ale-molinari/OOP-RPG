@@ -11,4 +11,9 @@ public class Sword extends Weapon {
         super(name);
         this.setAttackBuff(damage);
     }
+
+    @Override
+    public String toString() {
+        return "Sword";
+    }
 }

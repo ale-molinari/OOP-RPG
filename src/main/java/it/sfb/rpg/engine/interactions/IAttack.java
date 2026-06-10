@@ -11,4 +11,8 @@ public interface IAttack {
     default void damage(IHealth health) {
         health.takeDamage(getAttackValue());
     }
+
+    default void doSpecialAbility(IHealth health) {
+        health.takeDamage(getAttackValue());
+    };
 }

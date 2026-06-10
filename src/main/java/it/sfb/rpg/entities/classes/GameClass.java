@@ -3,8 +3,6 @@ package it.sfb.rpg.entities.classes;
 import it.sfb.rpg.engine.interactions.IHealth;
 import it.sfb.rpg.engine.interactions.IStats;
 import it.sfb.rpg.entities.IClass;
-import it.sfb.rpg.items.equipment.Armor;
-import it.sfb.rpg.items.equipment.Weapon;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -106,6 +104,11 @@ public class GameClass implements IClass, IStats {
     @Override
     public boolean takeDamage(int damage) {
         return IClass.super.takeDamage(damage);
+    }
+
+    @Override
+    public void doSpecialAbility(IHealth health) {
+        IClass.super.doSpecialAbility(health);
     }
 
     @Override

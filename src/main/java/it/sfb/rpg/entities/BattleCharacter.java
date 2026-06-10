@@ -2,7 +2,6 @@ package it.sfb.rpg.entities;
 
 import it.sfb.rpg.engine.interactions.IHealth;
 import it.sfb.rpg.items.equipment.EquipmentManager;
-import it.sfb.rpg.items.potions.IConsumable;
 
 import java.util.Map;
 
@@ -95,6 +94,11 @@ public abstract class BattleCharacter extends GameCharacter implements IClass {
     @Override
     public boolean takeDamage(int damage) {
         return gameClass.takeDamage(damage);
+    }
+
+    @Override
+    public void doSpecialAbility(IHealth health) {
+        gameClass.doSpecialAbility(health);
     }
 
     @Override

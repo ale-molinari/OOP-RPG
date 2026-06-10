@@ -83,9 +83,9 @@ public class CharactersInteractionsTests {
         PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 10)) { };
         PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(3, 2)) { };
         PlayerCharacter pg2 = new PlayerCharacter("character", new WarriorPriest(1, 2)) { };
-        testCharacter.damage(pg);
-        pg2.damage(pg);
-        Assert.assertEquals(10, testCharacter.getCurrentHealth());
+        pg.damage(testCharacter);
+        pg2.doSpecialAbility(testCharacter);
+        Assert.assertEquals(8, testCharacter.getCurrentHealth());
     }
 
     @Test
@@ -93,9 +93,9 @@ public class CharactersInteractionsTests {
         PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 10)) { };
         PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(3, 2)) { };
         PlayerCharacter pg2 = new PlayerCharacter("character", new MagePriest(1, 2)) { };
-        testCharacter.damage(pg);
-        pg2.damage(pg);
-        Assert.assertEquals(10, testCharacter.getCurrentHealth());
+        pg.damage(testCharacter);
+        pg2.doSpecialAbility(testCharacter);
+        Assert.assertEquals(8, testCharacter.getCurrentHealth());
     }
 
     @Test

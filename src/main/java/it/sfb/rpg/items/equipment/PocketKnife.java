@@ -10,4 +10,9 @@ public class PocketKnife extends Weapon {
         super(name);
         this.setAttackBuff(damage);
     }
+
+    @Override
+    public String toString() {
+        return "Pocket Knife";
+    }
 }

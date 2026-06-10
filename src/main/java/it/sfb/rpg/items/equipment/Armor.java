@@ -1,9 +1,8 @@
 package it.sfb.rpg.items.equipment;
 
 import it.sfb.rpg.items.EItemCategory;
-import it.sfb.rpg.items.potions.IItem;
 
-public abstract class Armor implements IItem {
+public abstract class Armor implements IEquippable<Armor> {
 
     private int healthBuff;
     private String name;
@@ -21,6 +20,16 @@ public abstract class Armor implements IItem {
     @Override
     public EItemCategory getCategory() {
         return this.category;
+    }
+
+    /**
+     * Enters the armor slot of the equipment manager.
+     * @param manager the manager handling the equipment
+     * @return the previously equipped armor, or null
+     */
+    @Override
+    public Armor equipOn(EquipmentManager manager){
+        return manager.equipArmor(this);
     }
 
     public int getHealthBuff() {
