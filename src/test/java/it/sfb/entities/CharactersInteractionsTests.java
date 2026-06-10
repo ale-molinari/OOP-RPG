@@ -1,13 +1,10 @@
 package it.sfb.entities;
 
-import it.sfb.rpg.engine.interactions.IHealth;
 import it.sfb.rpg.entities.EnemyCharacter;
 import it.sfb.rpg.entities.PlayerCharacter;
 import it.sfb.rpg.entities.classes.*;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Random;
 
 public class CharactersInteractionsTests {
 
@@ -64,25 +61,32 @@ public class CharactersInteractionsTests {
 
     @Test
     public void testMagePriestAttack() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 3)) { };
-        PlayerCharacter pg = new PlayerCharacter("character", new MagePriest(1, 2)) { };
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 3)) {
+        };
+        PlayerCharacter pg = new PlayerCharacter("character", new MagePriest(1, 2)) {
+        };
         pg.damage(testCharacter);
         Assert.assertEquals(1, testCharacter.getCurrentHealth());
     }
 
     @Test
     public void testWarriorMageAttack() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorMage(3, 3)) { };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(2, 2)) { };
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorMage(3, 3)) {
+        };
+        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(2, 2)) {
+        };
         pg.damage(testCharacter);
         Assert.assertEquals(1, testCharacter.getCurrentHealth());
     }
 
     @Test
-    public void testPWarriorPriestRestoreHP() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 10)) { };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(3, 2)) { };
-        PlayerCharacter pg2 = new PlayerCharacter("character", new WarriorPriest(1, 2)) { };
+    public void testWarriorPriestRestoreHP() throws Exception {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 10)) {
+        };
+        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(3, 2)) {
+        };
+        PlayerCharacter pg2 = new PlayerCharacter("character", new WarriorPriest(1, 2)) {
+        };
         pg.damage(testCharacter);
         pg2.doSpecialAbility(testCharacter);
         Assert.assertEquals(8, testCharacter.getCurrentHealth());
@@ -90,62 +94,40 @@ public class CharactersInteractionsTests {
 
     @Test
     public void testMagePriestRestoreHP() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 10)) { };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(3, 2)) { };
-        PlayerCharacter pg2 = new PlayerCharacter("character", new MagePriest(1, 2)) { };
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 10)) {
+        };
+        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(3, 2)) {
+        };
+        PlayerCharacter pg2 = new PlayerCharacter("character", new MagePriest(1, 2)) {
+        };
         pg.damage(testCharacter);
         pg2.doSpecialAbility(testCharacter);
         Assert.assertEquals(8, testCharacter.getCurrentHealth());
     }
 
     @Test
-    public void TestWarriorThiefCriticalDamage() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorThief(3, 10)) { };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorThief(3, 10)) {
-            @Override
-            public void damage(IHealth health){
-                int dmg = getAttackValue()*2;
-                health.takeDamage(dmg);
-            }
+    public void testWarriorThiefSpecialAttack() throws Exception {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new Priest(3, 999)) {
+        };
+        PlayerCharacter pg = new PlayerCharacter("character", new WarriorThief(2, 2)) {
         };
         pg.damage(testCharacter);
-        Assert.assertEquals(5, testCharacter.getCurrentHealth());
-    }
-
-    @Test
-    public void TestWarriorThiefNormalAttack() throws Exception{
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorThief(3, 10)) { };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorThief(3, 10)) {
-            @Override
-            public void damage(IHealth health) {
-                int dmg = getAttackValue();
-                health.takeDamage(dmg);
-            }
-        };
-        pg.damage(testCharacter);
-        Assert.assertEquals(8, testCharacter.getCurrentHealth());
-    }
-
-    @Test
-    public void TestWarriorThiefRandomCriticalAttack() throws Exception{
-        int critical = 0;
-        int normal = 0;
-        int attackAmount = 1000;
-
-        for (int i = 0; i < attackAmount; i++){
-            PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorThief(3, 10)) { };
-            PlayerCharacter pg = new PlayerCharacter("character", new WarriorThief(5, 10)) { };
-            pg.damage(testCharacter);
-
-            if (testCharacter.getCurrentHealth() == 1) {
-                critical++;
-            } else if (testCharacter.getCurrentHealth() == 6) {
-                normal++;
-            } else {
-                Assert.fail("character settings are not right");
+        Assert.assertEquals(997, testCharacter.getCurrentHealth());
+        int counter = 500;
+        int halfDamage = 0;
+        int doubleDamage = 0;
+        for (int i = 0; i < counter; i++) {
+            testCharacter.setCurrentHealth(999);
+            pg.doSpecialAbility(testCharacter);
+            if (testCharacter.getCurrentHealth() == 998) {
+                halfDamage++;
+            } else if (testCharacter.getCurrentHealth() == 995) {
+                doubleDamage++;
             }
         }
-        System.out.println("Critical: " + critical);
-        Assert.assertTrue(critical < 330);
+        Assert.assertTrue(halfDamage <= 300);
+        System.out.println("Half Damage: " + halfDamage);
+        Assert.assertTrue(doubleDamage <= 300);
+        System.out.println("Double Damage: " + doubleDamage);
     }
 }

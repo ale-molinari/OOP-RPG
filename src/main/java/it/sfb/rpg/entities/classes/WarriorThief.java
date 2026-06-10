@@ -14,8 +14,8 @@ public class WarriorThief extends GameClass implements IWarrior, IThief {
     }
 
     @Override
-    public void damage(IHealth health) {
-        IThief.super.damage(health);
+    public void doSpecialAbility(IHealth health) {
+        IThief.super.doSpecialAbility(health);
     }
 }
 

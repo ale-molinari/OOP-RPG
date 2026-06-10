@@ -12,4 +12,9 @@ public class Mage extends GameClass implements IMage{
     public void damage(IHealth health) {
         IMage.super.damage(health);
     }
+
+    @Override
+    public void doSpecialAbility(IHealth health) {
+        IMage.super.doSpecialAbility(health);
+    }
 }

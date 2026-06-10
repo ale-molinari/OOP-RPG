@@ -9,7 +9,7 @@ public class Thief extends GameClass implements IThief{
     }
 
     @Override
-    public void damage(IHealth health) {
-        IThief.super.damage(health);
+    public void doSpecialAbility(IHealth health) {
+        IThief.super.doSpecialAbility(health);
     }
 }

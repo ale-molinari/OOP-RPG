@@ -1,42 +1,46 @@
 package it.sfb.rpg.labyrinth.events;
 
 import it.sfb.rpg.entities.PlayerCharacter;
+import it.sfb.rpg.items.potions.IItem;
 import it.sfb.rpg.labyrinth.IGameEvent;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RewardEvent implements IGameEvent {
 
-    private boolean isLooted = false;
+    private List<IItem> items;
 
     public RewardEvent() {
+        this.items = new ArrayList<>();
     }
 
     @Override
     public void triggerEvent(PlayerCharacter playerCharacter) {
 
-        if (isLooted) {
-            System.out.println("You already looted this room");
+        if (this.items.isEmpty()) {
+            System.out.println("There are no items to loot");
             return;
         }
 
-        Random random = new Random();
-
-        int reward = random.nextInt(100)+1;
-
-        if (reward <= 50) {
-            playerCharacter.gainExperience(10);
-            System.out.println("You get some experience");
-        } else if (reward < 85) {
-            int attackUpgrade = Math.max(1, (int) (playerCharacter.getAttackValue()*0.15));
-            playerCharacter.setAttackValue(playerCharacter.getAttackValue()+attackUpgrade);
-            System.out.println("You get an attack bonus");
-        } else {
-            int healthUpgrade = Math.max(1,(int) (playerCharacter.getHealth()*0.25));
-            playerCharacter.setHealth(playerCharacter.getHealth()+healthUpgrade);
-            System.out.println("You get a health bonus");
+        for (int i = items.size() - 1; i >= 0; i--) {
+            IItem item = this.items.get(i);
+            if (!playerCharacter.getInventory().isFull()) {
+                playerCharacter.getInventory().addItem(item);
+                this.items.remove(i);
+            } else {
+                System.out.println("Inventory is full, you left some items behind");
+                System.out.println(items.toString());
+                break;
+            }
         }
+    }
 
-        isLooted = true;
+    public void addItem(IItem item) {
+        this.items.add(item);
+    }
+
+    public List<IItem> getItems() {
+        return this.items;
     }
 }
