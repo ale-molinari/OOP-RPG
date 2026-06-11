@@ -1,6 +1,6 @@
 package it.sfb.rpg.entities;
 
-import it.sfb.rpg.items.potions.IItem;
+import it.sfb.rpg.items.IItem;
 import it.sfb.rpg.items.potions.Inventory;
 
 import java.util.UUID;

@@ -1,7 +1,6 @@
 package it.sfb.rpg.items.equipment;
 
 import it.sfb.rpg.items.EItemCategory;
-import it.sfb.rpg.items.potions.IItem;
 
 public abstract class Weapon implements IEquippable<Weapon> {
 

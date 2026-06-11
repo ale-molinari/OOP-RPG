@@ -1,7 +1,7 @@
 package it.sfb.rpg.labyrinth.events;
 
 import it.sfb.rpg.entities.PlayerCharacter;
-import it.sfb.rpg.items.potions.IItem;
+import it.sfb.rpg.items.IItem;
 import it.sfb.rpg.labyrinth.IGameEvent;
 
 import java.util.ArrayList;

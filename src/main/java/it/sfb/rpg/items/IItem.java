@@ -1,6 +1,4 @@
-package it.sfb.rpg.items.potions;
-
-import it.sfb.rpg.items.EItemCategory;
+package it.sfb.rpg.items;
 
 public interface IItem {
 

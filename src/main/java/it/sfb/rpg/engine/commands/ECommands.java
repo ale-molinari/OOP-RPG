@@ -7,5 +7,6 @@ public enum ECommands {
     HEAL,
     LOOK,
     QUIT,
-    STATS
+    STATS,
+    BUY
 }

@@ -1,8 +1,5 @@
 package it.sfb.rpg.items.equipment;
 
-import it.sfb.rpg.entities.BattleCharacter;
-import it.sfb.rpg.entities.PlayerCharacter;
-
 public class Sword extends Weapon {
 
     private final int damage = 10;

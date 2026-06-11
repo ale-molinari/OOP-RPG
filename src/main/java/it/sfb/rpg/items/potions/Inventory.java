@@ -1,6 +1,7 @@
 package it.sfb.rpg.items.potions;
 
 import it.sfb.rpg.items.EItemCategory;
+import it.sfb.rpg.items.IItem;
 
 import java.util.ArrayList;
 import java.util.List;

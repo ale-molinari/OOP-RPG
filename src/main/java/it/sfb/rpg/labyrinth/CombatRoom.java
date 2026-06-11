@@ -2,12 +2,12 @@ package it.sfb.rpg.labyrinth;
 
 import it.sfb.rpg.entities.EnemyCharacter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CombatRoom extends Room  {
 
-    private ArrayList<EnemyCharacter> enemies;
+    private final List<EnemyCharacter> enemies;
 
     public CombatRoom(String name, IGameEvent evnt) {
         super(name, evnt);
@@ -31,6 +31,10 @@ public class CombatRoom extends Room  {
     public EnemyCharacter getFirstEnemy() {
         if (this.enemies.isEmpty()) return null;
         return this.enemies.getFirst();
+    }
+
+    public List<EnemyCharacter> getEnemies() {
+        return this.enemies;
     }
 
     @Override

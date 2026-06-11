@@ -1,7 +1,9 @@
 package it.sfb.rpg.labyrinth.events;
 
 import it.sfb.rpg.entities.PlayerCharacter;
+import it.sfb.rpg.labyrinth.CombatRoom;
 import it.sfb.rpg.labyrinth.IGameEvent;
+import it.sfb.rpg.labyrinth.Room;
 
 import java.util.Random;
 

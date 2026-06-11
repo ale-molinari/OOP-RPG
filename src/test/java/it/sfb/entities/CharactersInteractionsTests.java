@@ -130,4 +130,6 @@ public class CharactersInteractionsTests {
         Assert.assertTrue(doubleDamage <= 300);
         System.out.println("Double Damage: " + doubleDamage);
     }
+
+
 }

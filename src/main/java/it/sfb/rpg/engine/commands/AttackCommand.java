@@ -3,8 +3,11 @@ package it.sfb.rpg.engine.commands;
 import it.sfb.rpg.engine.GameContext;
 import it.sfb.rpg.entities.EnemyCharacter;
 import it.sfb.rpg.entities.PlayerCharacter;
+import it.sfb.rpg.items.IItem;
 import it.sfb.rpg.labyrinth.CombatRoom;
 import it.sfb.rpg.labyrinth.Room;
+
+import java.util.List;
 
 
 public class AttackCommand implements ICommandHandler {
@@ -38,6 +41,8 @@ public class AttackCommand implements ICommandHandler {
             }
         } else {
             System.out.println("You win the battle");
+            List<IItem> items = enemyCharacter.getItems();
+            playerCharacter.takeLoot(items);
         }
     }
 }

@@ -2,7 +2,7 @@ package it.sfb.rpg.entities;
 
 import it.sfb.rpg.items.equipment.IEquippable;
 import it.sfb.rpg.items.potions.IConsumable;
-import it.sfb.rpg.items.potions.IItem;
+import it.sfb.rpg.items.IItem;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public abstract class PlayerCharacter extends BattleCharacter implements IClass 
 
     /**
      * Changes the character's current equipment with a new item from the inventory.
-     * Uses double dispatch to dynamically route the item to its correct slot,
+     * Uses double dispatch to dynamically route the item to its correct slot
      * and automatically places any unequipped old item back into the inventory.
      * @param <T> the type of the equippable item, self-bounded to guarantee type safety
      * @param item the equippable item to be taken from the inventory and put on
