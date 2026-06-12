@@ -7,6 +7,11 @@ import it.sfb.rpg.labyrinth.Room;
 
 public class MovementCommand implements ICommandHandler {
 
+    /**
+     * Executes the movement logic, updating the player's position.
+     * @param gameContext the current state of the game
+     * @param command the direction string to move towards
+     */
     @Override
     public void handle(GameContext gameContext, String command) {
 
@@ -23,24 +28,5 @@ public class MovementCommand implements ICommandHandler {
         } else {
             System.out.println("You cannot move in that direction");
         }
-    }
-
-    public void lookAround(GameContext gameContext, EDirections lookDirection) {
-
-        RCoordinate currentPos = gameContext.getPlayerPosition();
-        RCoordinate nextRoomCoordinates = currentPos.calculateNeighborRoom(lookDirection);
-
-        if (!gameContext.getCurrentRoom().getAvailableDirections().contains(lookDirection)) {
-            System.out.println("There is no path in that direction, you see nothing");
-            return;
-        }
-
-        if (!gameContext.getLabyrinth().roomIsThere(nextRoomCoordinates)) {
-            System.out.println("You see nothing");
-            return;
-        }
-
-        Room adjacentRoom = gameContext.getLabyrinth().getRoomPosition(nextRoomCoordinates);
-        System.out.println("You see " + adjacentRoom.getName());
     }
 }

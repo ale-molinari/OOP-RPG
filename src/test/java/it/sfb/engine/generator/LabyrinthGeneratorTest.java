@@ -10,6 +10,7 @@ import org.junit.Test;
 public class LabyrinthGeneratorTest {
 
     private LabyrinthGenerator generator;
+    private Labyrinth labyrinth;
 
     @Before
     public void setUp() {

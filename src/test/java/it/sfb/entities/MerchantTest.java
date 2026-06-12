@@ -1,7 +1,6 @@
 package it.sfb.entities;
 
 import it.sfb.rpg.entities.Merchant;
-import it.sfb.rpg.entities.PlayerCharacter;
 import it.sfb.rpg.items.equipment.*;
 import it.sfb.rpg.items.potions.ExpPotion;
 import it.sfb.rpg.items.potions.HealPotion;

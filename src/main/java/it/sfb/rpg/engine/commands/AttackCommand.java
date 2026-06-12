@@ -12,6 +12,11 @@ import java.util.List;
 
 public class AttackCommand implements ICommandHandler {
 
+    /**
+     * Executes the attack logic in the current room.
+     * @param gameContext the current state of the game
+     * @param command the additional string argument passed with the command
+     */
     @Override
     public void handle(GameContext gameContext, String command) {
 
@@ -31,6 +36,11 @@ public class AttackCommand implements ICommandHandler {
         enemyCounterAttack(player, currentEnemy);
     }
 
+    /**
+     * Manages the enemy's counterattack during a combat turn.
+     * @param playerCharacter the player receiving the attack
+     * @param enemyCharacter the enemy performing the counterattack
+     */
     public void enemyCounterAttack(PlayerCharacter playerCharacter, EnemyCharacter enemyCharacter) {
         if (enemyCharacter.isAlive()) {
             System.out.println("The enemy attacks you");

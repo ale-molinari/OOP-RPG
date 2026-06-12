@@ -7,6 +7,11 @@ import it.sfb.rpg.labyrinth.Room;
 
 public class LookCommand implements ICommandHandler{
 
+    /**
+     * Executes the look logic to reveal information about a neighboring room.
+     * @param gameContext the current state of the game
+     * @param argument the direction string to look towards
+     */
     @Override
     public void handle(GameContext gameContext, String argument) {
 

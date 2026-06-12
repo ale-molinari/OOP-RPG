@@ -21,6 +21,11 @@ public class CommandIngester {
         handlers.put(ECommands.STATS, new StatsCommand());
     }
 
+    /**
+     * Processes the user input and delegates execution to the mapped handler.
+     * @param input the parsed command enum value
+     * @param argument the additional string argument provided by the user
+     */
     public void processInput(ECommands input, String argument) {
 
         ICommandHandler handler = handlers.get(input);

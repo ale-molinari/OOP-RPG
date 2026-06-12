@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Merchant<T extends IItem> extends PngCharacter implements IBargain<T> {
 
-    private Map<IItem, Integer> shop;
+    private Map<T, Integer> shop;
     private int wallet;
 
     public Merchant(String name) {
@@ -16,19 +16,19 @@ public class Merchant<T extends IItem> extends PngCharacter implements IBargain<
         this.wallet = 0;
     }
 
-    public Map<IItem, Integer> getShop() {
+    public Map<T, Integer> getShop() {
         return shop;
     }
 
-    public void setShop(IItem item, int price) {
+    public void setShop(T item, int price) {
         this.shop.put(item, price);
     }
 
-    public int getProductPrice(IItem item) {
+    public int getProductPrice(T item) {
         return shop.getOrDefault(item, 0);
     }
 
-    public boolean getItem(IItem item){
+    public boolean getItem(T item){
         return shop.containsKey(item);
     }
 
