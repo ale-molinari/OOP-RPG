@@ -18,7 +18,7 @@ public class CommandIngester {
         handlers.put(ECommands.MOVE, new MovementCommand());
         handlers.put(ECommands.LOOK, new LookCommand());
         handlers.put(ECommands.ATTACK, new AttackCommand());
-        handlers.put(ECommands.STATS, new StatsCommand());
+        handlers.put(ECommands.STATS, (cntx, arg) -> System.out.println(cntx.getPlayer().getStats()));
     }
 
     /**

@@ -2,8 +2,7 @@ package it.sfb.rpg.entities;
 
 import it.sfb.rpg.items.IItem;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Merchant<T extends IItem> extends PngCharacter implements IBargain<T> {
 
@@ -34,6 +33,19 @@ public class Merchant<T extends IItem> extends PngCharacter implements IBargain<
 
     public int getWallet() {
         return wallet;
+    }
+
+    public List<T> orderItemByPrice() {
+        return shop.entrySet().stream()
+                .sorted(Map.Entry.<T, Integer>comparingByValue().reversed())
+                .map(Map.Entry::getKey)
+                .toList();
+    }
+
+    public List<T> orderItemByName(){
+        return shop.keySet().stream()
+                .sorted(Comparator.comparing(IItem::getName))
+                .toList();
     }
 
     @Override

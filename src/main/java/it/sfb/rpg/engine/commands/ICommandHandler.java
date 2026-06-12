@@ -2,6 +2,7 @@ package it.sfb.rpg.engine.commands;
 
 import it.sfb.rpg.engine.GameContext;
 
+@FunctionalInterface
 public interface ICommandHandler {
 
     /**

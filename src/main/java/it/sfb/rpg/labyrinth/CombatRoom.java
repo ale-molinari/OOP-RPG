@@ -21,16 +21,12 @@ public class CombatRoom extends Room  {
     }
 
     public boolean hasAliveEnemies() {
-        for (EnemyCharacter enemy : this.enemies) {
-            if (enemy.getCurrentHealth() > 0) {
-                return true;
-            }
-        } return false;
-    }
+        return enemies.stream()
+                .anyMatch(enemy -> enemy.getCurrentHealth() > 0);
+        }
 
     public EnemyCharacter getFirstEnemy() {
-        if (this.enemies.isEmpty()) return null;
-        return this.enemies.getFirst();
+        return enemies.isEmpty() ? null : enemies.getFirst();
     }
 
     public List<EnemyCharacter> getEnemies() {

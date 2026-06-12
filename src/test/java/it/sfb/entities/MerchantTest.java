@@ -9,6 +9,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Objects;
+
 public class MerchantTest {
 
     private Merchant<Potion> potionMerchant;
@@ -65,5 +68,19 @@ public class MerchantTest {
         Assert.assertTrue(armorMerchant.getShop().containsKey(tunic));
         Assert.assertEquals(10, armorMerchant.getProductPrice(armor));
         Assert.assertEquals(10, armorMerchant.getProductPrice(tunic));
+    }
+
+    @Test
+    public void orderItemByNameTest() throws Exception {
+        potionMerchant.setShop(healPotion, 10);
+        potionMerchant.setShop(expPotion, 20);
+        Assert.assertEquals(List.of(expPotion, healPotion), potionMerchant.orderItemByName());
+    }
+
+    @Test
+    public void orderItemByPriceTest() throws Exception {
+        potionMerchant.setShop(healPotion, 10);
+        potionMerchant.setShop(expPotion, 20);
+        Assert.assertEquals(List.of(expPotion, healPotion), potionMerchant.orderItemByPrice());
     }
 }
