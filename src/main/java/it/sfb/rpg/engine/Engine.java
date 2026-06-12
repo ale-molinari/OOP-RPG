@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Engine {
 
     private static boolean running = true;
+    private static final Scanner scanner = new Scanner(System.in);
 
     public Engine(){
     };
@@ -16,7 +17,6 @@ public class Engine {
         System.out.println("Game started");
         while(running){
             System.out.println("Enter command(MOVE,LOOK,ATTACK,STATS,QUIT): ");
-            Scanner scanner = new Scanner(System.in);
             String commandStr = scanner.nextLine().trim().toUpperCase();
 
             if (commandStr.equals("QUIT")) {
@@ -28,7 +28,7 @@ public class Engine {
             try {
                 ECommands command = ECommands.valueOf(commandStr);
                 String argument = "";
-                if (command.equals(ECommands.valueOf("MOVE")) || command.equals(ECommands.valueOf("LOOK"))) {
+                if (command == ECommands.MOVE || command == ECommands.LOOK) {
                     System.out.println("Enter direction: " + gameContext.getCurrentRoom().getAvailableDirections());
                     argument = scanner.nextLine().trim().toUpperCase();
                 }
@@ -38,5 +38,5 @@ public class Engine {
                 System.out.println("Invalid command");
             }
         }
-    };
+    }
 }

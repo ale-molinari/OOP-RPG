@@ -4,10 +4,7 @@ import it.sfb.rpg.engine.commands.CommandIngester;
 import it.sfb.rpg.engine.generator.LabyrinthGenerator;
 import it.sfb.rpg.engine.printer.MapPrinter;
 import it.sfb.rpg.entities.PlayerCharacter;
-import it.sfb.rpg.entities.classes.GameClass;
-import it.sfb.rpg.entities.classes.MagePriest;
-import it.sfb.rpg.entities.classes.WarriorPriest;
-import it.sfb.rpg.entities.classes.WarriorThief;
+import it.sfb.rpg.entities.classes.*;
 import it.sfb.rpg.labyrinth.Labyrinth;
 
 import java.util.Scanner;
@@ -32,13 +29,18 @@ public class GameBuilder {
         System.out.print("Hero name: ");
         String name = scanner.nextLine().trim();
 
-        System.out.println("Select Class:\n1) Warrior-Thief\n2) Mage-Priest\n3) Warrior-Priest");
+        System.out.println("Select Class:\n1) Hunter\n2) Mystic\n3) Paladin\n4) Magus\n5) Thief\n6) Warrior\n7) Mage\n8) Priest");
         int classChoice = scanner.nextInt();
 
         GameClass selectedClass = switch (classChoice) {
-            case 2 -> new MagePriest(12, 40);
-            case 3 -> new WarriorPriest(15, 60);
-            default -> new WarriorThief(10, 50);
+            case 2 -> new Mystic(12, 40);
+            case 3 -> new Paladin(13, 60);
+            case 4 -> new Magus(11, 50);
+            case 5 -> new Thief(9, 35);
+            case 6 -> new Warrior(15, 65);
+            case 7 -> new Mage(10, 40);
+            case 8 -> new Priest(8, 40);
+            default -> new Hunter(10, 50);
         };
 
         return new PlayerCharacter(name, selectedClass) {};

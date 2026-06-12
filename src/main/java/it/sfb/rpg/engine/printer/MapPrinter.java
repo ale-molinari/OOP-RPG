@@ -22,7 +22,7 @@ public class MapPrinter {
             minY = Math.min(actualY, minY);
         }
 
-        for(int y = minY; y <= maxY; y++) {
+        for(int y = maxY; y >= minY; y--) {
             for(int x = minX; x <= maxX; x++) {
                 RCoordinate actualCoordinate = new RCoordinate(x, y);
 

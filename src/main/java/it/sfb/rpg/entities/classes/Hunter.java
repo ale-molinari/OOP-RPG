@@ -2,9 +2,9 @@ package it.sfb.rpg.entities.classes;
 
 import it.sfb.rpg.engine.interactions.IHealth;
 
-public class WarriorMage extends GameClass implements IWarrior, IMage {
+public class Hunter extends GameClass implements IWarrior, IThief {
 
-    public WarriorMage(int startingAttack, int startingHealth) {
+    public Hunter(int startingAttack, int startingHealth) {
         super(startingAttack, startingHealth);
     }
 
@@ -14,7 +14,8 @@ public class WarriorMage extends GameClass implements IWarrior, IMage {
     }
 
     @Override
-    public void damage(IHealth health) {
-        IMage.super.damage(health);
+    public void doSpecialAbility(IHealth health) {
+        IThief.super.doSpecialAbility(health);
     }
 }
+

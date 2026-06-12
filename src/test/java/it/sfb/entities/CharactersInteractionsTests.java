@@ -9,20 +9,20 @@ import org.junit.Test;
 public class CharactersInteractionsTests {
 
     @Test
-    public void testWarriorMageDefense() throws Exception {
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(5, 10)) {
+    public void testMagusDefense() throws Exception {
+        PlayerCharacter pg = new PlayerCharacter("character", new Magus(5, 10)) {
         };
-        EnemyCharacter pg2 = new EnemyCharacter("enemy", new WarriorMage(1, 10)) {
+        EnemyCharacter pg2 = new EnemyCharacter("enemy", new Magus(1, 10)) {
         };
         pg.damage(pg2);
         Assert.assertEquals(5, pg2.getCurrentHealth());
     }
 
     @Test
-    public void testWarriorPriestDefense() throws Exception {
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorPriest(4, 10)) {
+    public void testPaladinDefense() throws Exception {
+        PlayerCharacter pg = new PlayerCharacter("character", new Paladin(4, 10)) {
         };
-        EnemyCharacter pg2 = new EnemyCharacter("enemy", new WarriorPriest(1, 10)) {
+        EnemyCharacter pg2 = new EnemyCharacter("enemy", new Paladin(1, 10)) {
         };
         pg.damage(pg2);
         Assert.assertEquals(7, pg2.getCurrentHealth());
@@ -30,9 +30,9 @@ public class CharactersInteractionsTests {
 
     @Test
     public void testCharacterLevelUp() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorMage(2, 2)) {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new Magus(2, 2)) {
         };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(2, 2)) {
+        PlayerCharacter pg = new PlayerCharacter("character", new Magus(2, 2)) {
         };
         pg.setCurrentExperience(30);
         testCharacter.gainExperience(pg.getCurrentExperience());
@@ -41,9 +41,9 @@ public class CharactersInteractionsTests {
 
     @Test
     public void testIsDead() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(2, 2)) {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new Mystic(2, 2)) {
         };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(5, 2)) {
+        PlayerCharacter pg = new PlayerCharacter("character", new Magus(5, 2)) {
         };
         testCharacter.takeDamage(pg.getAttackValue());
         Assert.assertFalse(testCharacter.isAlive());
@@ -51,41 +51,41 @@ public class CharactersInteractionsTests {
 
     @Test
     public void testIsAlive() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorMage(2, 20)) {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new Magus(2, 20)) {
         };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(2, 2)) {
+        PlayerCharacter pg = new PlayerCharacter("character", new Magus(2, 2)) {
         };
         testCharacter.takeDamage(pg.getAttackValue());
         Assert.assertTrue(testCharacter.isAlive());
     }
 
     @Test
-    public void testMagePriestAttack() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 3)) {
+    public void testMysticAttack() throws Exception {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new Mystic(3, 3)) {
         };
-        PlayerCharacter pg = new PlayerCharacter("character", new MagePriest(1, 2)) {
-        };
-        pg.damage(testCharacter);
-        Assert.assertEquals(1, testCharacter.getCurrentHealth());
-    }
-
-    @Test
-    public void testWarriorMageAttack() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new WarriorMage(3, 3)) {
-        };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(2, 2)) {
+        PlayerCharacter pg = new PlayerCharacter("character", new Mystic(1, 2)) {
         };
         pg.damage(testCharacter);
         Assert.assertEquals(1, testCharacter.getCurrentHealth());
     }
 
     @Test
-    public void testWarriorPriestRestoreHP() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 10)) {
+    public void testMagusAttack() throws Exception {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new Magus(3, 3)) {
         };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(3, 2)) {
+        PlayerCharacter pg = new PlayerCharacter("character", new Magus(2, 2)) {
         };
-        PlayerCharacter pg2 = new PlayerCharacter("character", new WarriorPriest(1, 2)) {
+        pg.damage(testCharacter);
+        Assert.assertEquals(1, testCharacter.getCurrentHealth());
+    }
+
+    @Test
+    public void testPaladinRestoreHP() throws Exception {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new Mystic(3, 10)) {
+        };
+        PlayerCharacter pg = new PlayerCharacter("character", new Magus(3, 2)) {
+        };
+        PlayerCharacter pg2 = new PlayerCharacter("character", new Paladin(1, 2)) {
         };
         pg.damage(testCharacter);
         pg2.doSpecialAbility(testCharacter);
@@ -93,12 +93,12 @@ public class CharactersInteractionsTests {
     }
 
     @Test
-    public void testMagePriestRestoreHP() throws Exception {
-        PlayerCharacter testCharacter = new PlayerCharacter("character", new MagePriest(3, 10)) {
+    public void testMysticRestoreHP() throws Exception {
+        PlayerCharacter testCharacter = new PlayerCharacter("character", new Mystic(3, 10)) {
         };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorMage(3, 2)) {
+        PlayerCharacter pg = new PlayerCharacter("character", new Magus(3, 2)) {
         };
-        PlayerCharacter pg2 = new PlayerCharacter("character", new MagePriest(1, 2)) {
+        PlayerCharacter pg2 = new PlayerCharacter("character", new Mystic(1, 2)) {
         };
         pg.damage(testCharacter);
         pg2.doSpecialAbility(testCharacter);
@@ -106,10 +106,10 @@ public class CharactersInteractionsTests {
     }
 
     @Test
-    public void testWarriorThiefSpecialAttack() throws Exception {
+    public void testHunterSpecialAttack() throws Exception {
         PlayerCharacter testCharacter = new PlayerCharacter("character", new Priest(3, 999)) {
         };
-        PlayerCharacter pg = new PlayerCharacter("character", new WarriorThief(2, 2)) {
+        PlayerCharacter pg = new PlayerCharacter("character", new Hunter(2, 2)) {
         };
         pg.damage(testCharacter);
         Assert.assertEquals(997, testCharacter.getCurrentHealth());

@@ -20,6 +20,12 @@ public class LabyrinthGenerator {
         this.random = new Random(this.seed);
     }
 
+    /**
+     * Procedurally generates a fully connected labyrinth by attaching rooms to
+     * randomly chosen available doors on existing rooms.
+     * @param numberOfRooms the total number of rooms to place in the map
+     * @return the fully generated and connected Labyrinth
+     */
     public Labyrinth generateLabyrinth(int numberOfRooms) {
 
         Labyrinth labyrinth = new Labyrinth();
@@ -52,11 +58,10 @@ public class LabyrinthGenerator {
                 newRoom.setCoordinate(nextCoordinate);
 
                 labyrinth.addRoom(nextCoordinate, newRoom);
-                nextRoom.setExit(direction, newRoom);
-
-                newRoom.setExit(direction.getOpposite(), nextRoom);
 
                 roomsInTheMap.add(newRoom);
+
+                connectAdjacentRooms(newRoom, labyrinth);
             }
         }
         return labyrinth;
@@ -64,6 +69,24 @@ public class LabyrinthGenerator {
 
     public int getSeed() {
         return this.seed;
+    }
+
+    /**
+     * Checks the four cardinal directions around a newly placed room and opens
+     * bidirectional doors to any existing adjacent rooms.
+     * @param room the newly positioned room on the map
+     * @param labyrinth the current state of the map being generated
+     */
+    private void connectAdjacentRooms(Room room, Labyrinth labyrinth) {
+
+        for (EDirections direction : EDirections.values()) {
+            RCoordinate neighborCoordinate = room.getCoordinate().calculateNeighborRoom(direction);
+            Room adjacentRoom = labyrinth.getRoomPosition(neighborCoordinate);
+            if (adjacentRoom != null) {
+                room.setExit(direction, adjacentRoom);
+                adjacentRoom.setExit(direction.getOpposite(), room);
+            }
+        }
     }
 }
 
