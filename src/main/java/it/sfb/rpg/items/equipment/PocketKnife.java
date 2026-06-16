@@ -1,14 +1,11 @@
 package it.sfb.rpg.items.equipment;
 
-import it.sfb.rpg.entities.classes.Warrior;
-
 public class PocketKnife extends Weapon {
 
-    private final int damage = 5;
+    private static final int ATTACK_BUFF = 5;
 
     public PocketKnife(String name) {
-        super(name);
-        this.setAttackBuff(damage);
+        super(name, ATTACK_BUFF);
     }
 
     @Override

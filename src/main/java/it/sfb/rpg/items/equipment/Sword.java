@@ -2,11 +2,10 @@ package it.sfb.rpg.items.equipment;
 
 public class Sword extends Weapon {
 
-    private final int damage = 10;
+    private static final int ATTACK_BUFF = 10;
 
     public Sword(String name) {
-        super(name);
-        this.setAttackBuff(damage);
+        super(name, ATTACK_BUFF);
     }
 
     @Override

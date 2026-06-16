@@ -2,11 +2,10 @@ package it.sfb.rpg.items.equipment;
 
 public class Tunic extends Armor{
 
-    private final int healthBuff = 5;
+    private static final int HEALTH_BUFF = 5;
 
     public Tunic(String name) {
-        super(name);
-        this.setHealthBuff(healthBuff);
+        super(name, HEALTH_BUFF);
     }
 
     @Override

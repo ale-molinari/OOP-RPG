@@ -8,8 +8,9 @@ public abstract class Armor implements IEquippable<Armor> {
     private String name;
     private final EItemCategory category =  EItemCategory.ARMOR;
 
-    public Armor(String name) {
+    public Armor(String name, int healthBuff) {
         this.name = name;
+        this.healthBuff = healthBuff;
     }
 
     @Override

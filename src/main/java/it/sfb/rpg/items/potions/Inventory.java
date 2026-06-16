@@ -2,6 +2,7 @@ package it.sfb.rpg.items.potions;
 
 import it.sfb.rpg.items.EItemCategory;
 import it.sfb.rpg.items.IItem;
+import it.sfb.rpg.labyrinth.Room;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +44,8 @@ public class Inventory<T extends IItem> {
     }
 
     public List<T> getByCategory(EItemCategory category) {
-        List<T> list = new ArrayList<>();
-        for(T item : this.items) {
-            if(item.getCategory() == category) {
-                list.add(item);
-            }
-        }
-        return list;
+        return items.stream()
+                .filter(item -> item.getCategory() == category)
+                .toList();
     }
 }

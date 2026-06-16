@@ -8,8 +8,9 @@ public abstract class Weapon implements IEquippable<Weapon> {
     private int attackBuff;
     private final EItemCategory category = EItemCategory.WEAPON;
 
-    public Weapon(String name) {
+    public Weapon(String name, int attackBuff) {
         this.name = name;
+        this.attackBuff = attackBuff;
     }
 
     @Override
