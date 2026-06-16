@@ -2,15 +2,20 @@ package it.sfb.rpg.items.equipment;
 
 import it.sfb.rpg.items.EItemCategory;
 
-public abstract class Weapon implements IEquippable<Weapon> {
+public abstract class Weapon implements IEquippable<Weapon>, IEnchantable {
 
     private String name;
-    private int attackBuff;
+    private final int attackBuff;
     private final EItemCategory category = EItemCategory.WEAPON;
+    private int enchantmentBuff;
+    private int maxEnchantment;
+    private static final int ENCHANT_PRICE = 100;
 
     public Weapon(String name, int attackBuff) {
         this.name = name;
         this.attackBuff = attackBuff;
+        this.enchantmentBuff = 0;
+        this.maxEnchantment = 10;
     }
 
     @Override
@@ -34,14 +39,26 @@ public abstract class Weapon implements IEquippable<Weapon> {
     }
 
     public int getAttackBuff() {
-        return attackBuff;
+        return attackBuff + enchantmentBuff;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAttackBuff(int attackBuff) {
-        this.attackBuff = attackBuff;
+    @Override
+    public int getMaxEnchantment() {
+        return maxEnchantment;
+    }
+
+    @Override
+    public void enchant() {
+        this.enchantmentBuff += 3;
+        this.maxEnchantment--;
+    }
+
+    @Override
+    public int getEnchantPrice() {
+        return ENCHANT_PRICE;
     }
 }

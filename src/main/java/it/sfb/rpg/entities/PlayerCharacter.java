@@ -8,8 +8,19 @@ import java.util.List;
 
 public abstract class PlayerCharacter extends BattleCharacter implements IClass {
 
+    private int gold;
+
     public PlayerCharacter(String name, IClass clz) {
         super(name, clz);
+        this.gold = 0;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 
     /**
